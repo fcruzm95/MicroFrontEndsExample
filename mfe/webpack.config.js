@@ -14,6 +14,9 @@ module.exports = {
   devServer: {
     port: 4201,
     historyApiFallback: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    }
   },
 
   module: {
@@ -43,8 +46,9 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "mfe",
       filename: "remoteEntry.js",
-      remotes: {},
-      exposes: {},
+      exposes: {
+        "./App": "./src/App.tsx"
+      },
       shared: {
         ...deps,
         react: {

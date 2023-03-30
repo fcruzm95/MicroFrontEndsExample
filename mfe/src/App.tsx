@@ -11,4 +11,11 @@ const App = () => (
     <div>CSS: Empty CSS</div>
   </div>
 );
-ReactDOM.render(<App />, document.getElementById("app"));
+
+class reactMFE extends HTMLElement {
+  connectedCallback() {
+    ReactDOM.render(<App />, this);
+  }
+}
+
+customElements.define('react-element', reactMFE);
