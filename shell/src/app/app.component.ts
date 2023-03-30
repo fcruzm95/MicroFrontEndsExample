@@ -1,3 +1,4 @@
+import { WebComponentWrapperOptions } from '@angular-architects/module-federation-tools/lib/web-components/web-component-wrapper';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'shell';
+
+  reactMFEOptions: WebComponentWrapperOptions = {
+    remoteEntry: "http://localhost:4201/remoteEntry.js",
+    remoteName: "mfe",
+    exposedModule: "./App",
+    elementName: "react-element"
+  }
 }
