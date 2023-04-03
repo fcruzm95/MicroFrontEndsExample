@@ -1,18 +1,18 @@
-import { ModuleFederationToolsModule } from '@angular-architects/module-federation-tools';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ReactComponentWrapper } from './utils/react-component-wrapper.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ReactComponentWrapper
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    ModuleFederationToolsModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

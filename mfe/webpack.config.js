@@ -7,6 +7,8 @@ module.exports = {
     publicPath: "http://localhost:4201/",
   },
 
+  devtool: "source-map-loader",
+
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
   },

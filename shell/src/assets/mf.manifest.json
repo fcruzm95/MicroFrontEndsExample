@@ -1,5 +1,5 @@
 {
-  "mfe1": {
+  "mfe": {
     "type": "script",
     "remoteEntry": "http://localhost:4201/remoteEntry.js"
   }
