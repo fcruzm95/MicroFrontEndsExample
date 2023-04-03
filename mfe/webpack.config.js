@@ -7,8 +7,6 @@ module.exports = {
     publicPath: "http://localhost:4201/",
   },
 
-  devtool: "source-map-loader",
-
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
   },
@@ -49,7 +47,8 @@ module.exports = {
       name: "mfe",
       filename: "remoteEntry.js",
       exposes: {
-        "./App": "./src/App.tsx"
+        "./App": "./src/App.tsx",
+        "./EventEmitterFactory": "./src/events/EventEmitterFactory.ts"
       },
       shared: {
         ...deps,

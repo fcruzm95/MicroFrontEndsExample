@@ -1,6 +1,10 @@
 import { WebComponentWrapperOptions } from '@angular-architects/module-federation-tools/lib/web-components/web-component-wrapper';
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+// import { EventEmitterFactory } from 'mfe';
+import { loadRemoteModule } from '@angular-architects/module-federation';
+import { EventEmitterInterface } from './model/EventEmitterInterface';
+
 
 export interface ReactPropInterface {
     message: string,
@@ -31,11 +35,23 @@ export class AppComponent implements OnInit{
     onChildEvent: new BehaviorSubject<string>("test")
   }
 
-  ngOnInit() {
-    this.mfeProps.onChildEvent.subscribe(
-      (event: string) => {
-        console.log("child event",event);
+  constructor() {
+    loadRemoteModule({
+      type: 'script',
+      remoteName: 'mfe',
+      exposedModule: './EventEmitterFactory'
+    }).then(
+      m => {
+        const eventEmitterInstance = m.EventEmitterFactory.getInstance()
+        eventEmitterInstance.eventEmitter$.subscribe(
+          (data: any) => {
+            console.log(data);
+          }
+        );
       }
     );
+
   }
+
+  ngOnInit() { }
 }

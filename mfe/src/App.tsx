@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import { ReactPropInterface } from "./model/ReactPropInterface";
 import { BehaviorSubject } from "rxjs";
+import { EventEmitter } from "./events/eventEmitter";
+import { EventEmitterFactory } from "./events/EventEmitterFactory";
 
 const defaultProps = {
   message: "default",
@@ -11,10 +13,16 @@ const defaultProps = {
   onChildEvent: new BehaviorSubject<string>("default")
 }
 
+const clickedEvent = () => {
+  const eventEmitter = EventEmitterFactory.getInstance();
+  eventEmitter.sendEvent("click", {message: "clicked"})
+}
+
 const App = (props: ReactPropInterface) => {
   props.onChildEvent.next("test from child");
+
   return (
-    <div className={`container ${props.className}`} onClick={props.onClickEvent}>
+    <div className={`container ${props.className}`} onClick={clickedEvent}>
       <div>Message from shell: {props.message}</div>
       <div>Name: mfe</div>
       <div>Framework: react</div>
